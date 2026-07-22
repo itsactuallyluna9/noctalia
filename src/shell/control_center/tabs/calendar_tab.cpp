@@ -841,7 +841,8 @@ void CalendarTab::rebuildEventList(float scale) {
   selectedTm.tm_isdst = -1;
   std::mktime(&selectedTm); // normalize tm_wday
   if (m_eventsTitle != nullptr) {
-    m_eventsTitle->setText(formatStrftime("%A %e %B", selectedTm));
+    const char* format = m_config != nullptr ? m_config->config().calendar.eventDateFormat.c_str() : "%A %e %B";
+    m_eventsTitle->setText(formatStrftime(format, selectedTm));
   }
 
   const int selectedKey = dateKey(m_selectedYear, m_selectedMonth, m_selectedDay);
@@ -882,7 +883,8 @@ void CalendarTab::rebuildEventList(float scale) {
       const std::time_t raw = std::chrono::system_clock::to_time_t(event->start);
       std::tm tm{};
       localtime_r(&raw, &tm);
-      timeText = formatStrftime("%H:%M", tm);
+      const char* format = m_config != nullptr ? m_config->config().calendar.eventTimeFormat.c_str() : "%H:%M";
+      timeText = formatStrftime(format, tm);
     }
 
     auto dot = ui::box({

@@ -2371,6 +2371,14 @@
           "description": "How often to sync calendar events (minutes)",
           "label": "Refresh Interval"
         },
+        "calendar-event-time-format": {
+          "description": "The time format shown for calendar events",
+          "label": "Event Time Format"
+        },
+        "calendar-event-date-format": {
+          "description": "The date format shown in the event card for the selected date",
+          "label": "Event Date Format"
+        },
         "custom-schedule": {
           "description": "Use manual sunrise/sunset times instead of computing from coordinates",
           "label": "Custom Schedule"
